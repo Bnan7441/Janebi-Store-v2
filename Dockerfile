@@ -1,6 +1,9 @@
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
+
+# Install build dependencies for better-sqlite3
+RUN apk add --no-cache python3 make g++ sqlite
 
 COPY package*.json tsconfig.json vite.config.ts drizzle.config.ts ./
 RUN npm ci
@@ -11,15 +14,14 @@ COPY . .
 RUN npm run build
 
 # Production runtime stage
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 
 WORKDIR /app
 
 ENV NODE_ENV=production
 ENV PORT=3000
 
-# Install SQLite utilities if needed
-RUN apk add --no-cache sqlite
+RUN apk add --no-cache python3 make g++ sqlite
 
 COPY package*.json ./
 RUN npm ci --omit=dev

@@ -22,18 +22,25 @@ import adminRoutes from './routes/admin.js';
 
 export const app = express();
 
+// Trust reverse proxy (Nginx)
+app.set('trust proxy', 1);
+
 // Middleware
 app.use(helmet({
   contentSecurityPolicy: false,
 }));
 app.use(cors());
 app.use(express.json());
-app.use(pino({
-  transport: {
-    target: 'pino-pretty',
-    options: { colorize: true }
-  }
-}));
+app.use(pino(
+  process.env.NODE_ENV !== 'production' && env.NODE_ENV !== 'production'
+    ? {
+        transport: {
+          target: 'pino-pretty',
+          options: { colorize: true }
+        }
+      }
+    : {}
+));
 
 // Rate limiting
 const limiter = rateLimit({
