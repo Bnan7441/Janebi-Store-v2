@@ -1,0 +1,99 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Vazirmatn", system-ui, sans-serif;
+  --color-primary-50: #fff7ed;
+  --color-primary-100: #ffedd5;
+  --color-primary-500: #f97316;
+  --color-primary-600: #ea580c;
+  --color-primary-700: #c2410c;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #f8fafc;
+  color: #0f172a;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background-color: #090d16;
+  color: #f8fafc;
+}
+
+/* ── Dark Mode: Minimum Contrast Enforcement ──────────────────────
+   Ensures muted/secondary text meets WCAG AA (4.5:1) in dark mode.
+   gray-400 (#9ca3af) on gray-900 fails; gray-300 (#d1d5db) passes.
+   We override secondary text globally for dark mode.
+──────────────────────────────────────────────────────────────────── */
+.dark .text-gray-400 {
+  color: #d1d5db; /* gray-300 — WCAG AA compliant on dark-900 */
+}
+.dark .text-gray-500 {
+  color: #9ca3af; /* gray-400 — slightly better than gray-500 */
+}
+
+/* ── Focus Ring System ────────────────────────────────────────────
+   Consistent keyboard focus outline across all interactive elements
+──────────────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #ea580c;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.dark :focus-visible {
+  outline-color: #fb923c;
+}
+
+/* Suppress focus ring for mouse interactions */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+@media print {
+  header, footer, nav, .print\:hidden {
+    display: none !important;
+  }
+  
+  body {
+    background-color: white;
+  }
+
+  .print-receipt {
+    display: block !important;
+  }
+}
+

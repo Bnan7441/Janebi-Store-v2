@@ -1,0 +1,2 @@
+export const FREE_SHIPPING_THRESHOLD = 2000000; // 2,000,000 Toman
+export const MAX_CART_QUANTITY = 99;
