@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: janebi-store
+    restart: always
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - DATABASE_URL=data/janebi.db
+      - JWT_ACCESS_SECRET=${JWT_ACCESS_SECRET:-janebi_secret_access_production_key_2026_secure}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET:-janebi_secret_refresh_production_key_2026_secure}
+      - ZARINPAL_MERCHANT_ID=${ZARINPAL_MERCHANT_ID:-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}
+      - ZARINPAL_SANDBOX=${ZARINPAL_SANDBOX:-true}
+      - APP_URL=${APP_URL:-http://45.82.137.67}
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./data:/app/data
