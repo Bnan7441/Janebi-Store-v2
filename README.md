@@ -149,13 +149,16 @@ docker logs -f janebi-store
 
 ---
 
-## 📬 سرور ایمیل اختصاصی (Domain Mail Server)
+## 📬 سرور و پنل ایمیل اختصاصی (Webmail & Domain Mail)
 
-- **ایمیل رسمی:** `info@janebiarena.ir`
+- **آدرس پنل وب‌میل (فارسی و زیبا):** [https://janebiarena.ir/webmail](https://janebiarena.ir/webmail)
+- **نام کاربری:** `info` (یا `info@janebiarena.ir`)
+- **رمز عبور پیش‌فرض:** `@iDiN#135`
+- **قابلیت تغییر رمز عبور:** از طریق منوی **«تنظیمات (Settings) > کلمه عبور (Password)»** داخل پنل وب‌میل به راحتی می‌توانید رمز عبور ایمیل را تغییر دهید.
 - **پروتکل‌ها:** IMAP (پورت `993` با SSL) / SMTP (پورت `587` با STARTTLS)
 - **هاست میل:** `mail.janebiarena.ir`
-- **رکوردهای DNS الزامی:**
-  - `A`: `mail` -> `45.82.137.67` (DNS Only)
+- **رکوردهای DNS الزامی در ابر آروان:**
+  - `A`: `mail` -> `45.82.137.67` (DNS Only / ابر خاموش)
   - `MX`: `@` -> `mail.janebiarena.ir` (Priority 10)
 
 ---
