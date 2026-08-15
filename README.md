@@ -149,5 +149,16 @@ docker logs -f janebi-store
 
 ---
 
+## 📬 سرور ایمیل اختصاصی (Domain Mail Server)
+
+- **ایمیل رسمی:** `info@janebiarena.ir`
+- **پروتکل‌ها:** IMAP (پورت `993` با SSL) / SMTP (پورت `587` با STARTTLS)
+- **هاست میل:** `mail.janebiarena.ir`
+- **رکوردهای DNS الزامی:**
+  - `A`: `mail` -> `45.82.137.67` (DNS Only)
+  - `MX`: `@` -> `mail.janebiarena.ir` (Priority 10)
+
+---
+
 ## 📝 لایسنس
 این پروژه تحت مجوز MIT منتشر شده است.
